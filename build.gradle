@@ -1,0 +1,41 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: "config_version.gradle"
+apply plugin: 'com.alibaba.arouter'
+
+buildscript {
+    ext.objectboxVersion = '2.7.1'
+    ext.kotlinVersion = "1.4.31"
+    repositories {
+        maven { url "https://maven.aliyun.com/nexus/content/repositories/google" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        //google()
+        //jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "com.alibaba:arouter-register:1.0.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "io.objectbox:objectbox-gradle-plugin:$objectboxVersion"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+
+}
+
+allprojects {
+    repositories {
+        maven { url "https://dl.bintray.com/sunlunchang/code" }
+        maven { url "https://dl.bintray.com/sunlunchang/media" }
+        maven { url "https://maven.aliyun.com/nexus/content/repositories/google" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url "https://jitpack.io" }
+        //mavenLocal()
+        //mavenCentral()
+        //google()
+        //jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

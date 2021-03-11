@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        flavorDimensions "versionCode"
+
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //只生成armv7的so
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'slc'
+            keyPassword '786586'
+            storeFile file('../slc.jks')
+            storePassword '786586'
+        }
+        debug {
+            keyAlias 'slc'
+            keyPassword '786586'
+            storeFile file('../slc.jks')
+            storePassword '786586'
+        }
+    }
+    productFlavors {
+        online {
+            applicationId "android.mc.command"
+            manifestPlaceholders = [API        : "http://101.132.144.109:8085/fire.mobile/",
+                                    API_DS     : "http://61.190.53.185:8099/",
+                                    API_DS_FILE: "http://61.190.53.185:8089",
+                                    SOCKET_HOST: "101.132.144.109",
+                                    SOCKET_PORT: "7611",
+                                    A_MAP_KEY  : "d548879d22b50bcdee9ebed03d064e5b"]
+        }
+        dev {
+            applicationId "android.mc.command"
+            manifestPlaceholders = [API        : "http://192.168.1.104:8081/",
+                                    API_DS     : "http://61.190.53.185:8099/",
+                                    API_DS_FILE: "http://61.190.53.185:8089",
+                                    SOCKET_HOST: "101.132.144.109",
+                                    SOCKET_PORT: "7611",
+                                    A_MAP_KEY  : "d548879d22b50bcdee9ebed03d064e5b"]
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [ON_LINE: "true"]
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            manifestPlaceholders = [ON_LINE: "flase"]
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding = true;
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    if (!IS_MODULE_MODE.toBoolean()) {
+        implementation project(path: ':appmodule:appbase')
+        implementation project(path: ':appmodule:user')
+        implementation project(path: ':appmodule:command')
+    }
+}

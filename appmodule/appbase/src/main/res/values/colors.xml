@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorGreen1">#27c6cc</color>
+    <color name="colorOrange1">#e78721</color>
+    <color name="colorBlue1">#1691e1</color>
+    <color name="colorYellow1">#f2ac3a</color>
+    <color name="colorRed1">#ec774c</color>
+
+    <color name="androidTextColorPrimary">#191919</color>
+    <color name="androidTextColorSecondary">#696969</color>
+    <color name="androidTextColorHint">#C5C5C5</color>
+    <color name="androidTextColor4">#DDDDDD</color>
+
+    <color name="divider">#0A191919</color>
+    <color name="colorBackground">#f0f4f7</color>
+    <color name="colorAccentEnabled">#77f2ac3a</color>
+</resources>

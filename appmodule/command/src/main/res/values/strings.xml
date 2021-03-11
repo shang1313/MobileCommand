@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">移动指挥</string>
+    <string name="comm_label_disaster_express">灾情速递</string>
+    <string name="comm_label_image_resource">图像资源</string>
+    <string name="comm_label_video_meeting">视频会议</string>
+    <string name="comm_label_common_functions">常用功能</string>
+    <string name="comm_label_my">我的</string>
+    <array name="comm_disaster_express_array">
+        <item>灾情速递</item>
+        <item>我的图像</item>
+    </array>
+</resources>

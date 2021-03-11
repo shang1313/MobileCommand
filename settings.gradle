@@ -1,0 +1,8 @@
+include ':app'
+include ':appmodule:appdatabase'
+include ':appmodule:appbase'
+include ':appmodule:user'
+include ':appmodule:command'
+include ':public:pickerView'
+include ':public:magicindicator'
+rootProject.name = "MobileCommand"

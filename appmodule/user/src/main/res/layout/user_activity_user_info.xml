@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="android.slc.user.vm.UserInfoVm" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/app_bar_layout_light" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/developersContentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout style="@style/generalInputLayoutStyle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/generalInputStyle"
+                        android:hint="@string/user_label_pet_name"
+                        android:text="@={vm.userOf.userName}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout style="@style/generalInputLayoutStyle">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        style="@style/generalInputStyle"
+                        android:hint="@string/user_label_cell_phone"
+                        android:text="@={vm.userOf.phoneNo}" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

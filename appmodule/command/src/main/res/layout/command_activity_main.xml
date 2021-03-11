@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="android.slc.command.vm.MainVm" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/developersContentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                layout="@layout/app_view_fragment_parent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <View style="@style/MyDividerH" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <RadioGroup
+                    android:id="@+id/rg_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_disaster_express"
+                        style="@style/mapActionRadioStyle"
+                        android:checked="true"
+                        android:drawableTop="@drawable/comm_ic_disaster_express"
+                        android:text="@string/comm_label_disaster_express" />
+
+                    <RadioButton
+                        android:id="@+id/rb_image_resource"
+                        style="@style/mapActionRadioStyle"
+                        android:drawableTop="@drawable/comm_ic_image_resource"
+                        android:text="@string/comm_label_video_meeting" />
+
+                    <RadioButton
+                        android:id="@+id/rb_common_functions"
+                        style="@style/mapActionRadioStyle"
+                        android:drawableTop="@drawable/comm_ic_common_functions"
+                        android:text="@string/comm_label_common_functions" />
+
+                    <RadioButton
+                        android:id="@+id/rb_mine"
+                        style="@style/mapActionRadioStyle"
+                        android:drawableTop="@drawable/comm_ic_my"
+                        android:text="@string/comm_label_my" />
+                </RadioGroup>
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

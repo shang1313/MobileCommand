@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <dimen name="app_style_dp_32">32dp</dimen>
+    <dimen name="app_style_dp_16">16dp</dimen>
+    <dimen name="app_style_dp_14">14dp</dimen>
+    <dimen name="app_style_dp_12">12dp</dimen>
+    <dimen name="app_style_dp_8">8dp</dimen>
+</resources>

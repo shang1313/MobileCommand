@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="android.slc.user">
+
+    <application>
+
+        <activity
+            android:name="android.slc.user.ui.activity.LoginActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name="android.slc.user.ui.activity.WelcomeActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|density|fontScale" />
+        <activity
+            android:name="android.slc.user.ui.activity.UserInfoActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|density|fontScale" />
+        <activity
+            android:name="android.slc.user.ui.activity.UpDataActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|density|fontScale"
+            android:theme="@style/TipDialog" />
+    </application>
+</manifest>

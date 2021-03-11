@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_attachments_item_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:paddingStart="4dp"
+    android:paddingTop="@dimen/app_style_dp_8"
+    android:paddingEnd="4dp"
+    android:paddingBottom="@dimen/app_style_dp_8">
+
+    <FrameLayout
+        android:layout_width="32dp"
+        android:layout_height="32dp">
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@color/divider" />
+
+        <FrameLayout
+            android:id="@+id/progress_bar_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#40000000"
+            android:padding="2dp"
+            android:visibility="invisible">
+
+            <com.dinuscxj.progressbar.CircleProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:progress_background_color="@android:color/white"
+                app:progress_end_color="@color/colorAccent"
+                app:progress_start_color="@color/colorAccent"
+                app:progress_stroke_cap="round"
+                app:progress_stroke_width="2dp"
+                app:progress_text_color="@android:color/white"
+                app:progress_text_size="10sp"
+                app:style="solid_line" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        style="@style/LinearLayoutVerticalZWW"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="@dimen/app_style_dp_8">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/app_name"
+            android:textColor="?android:attr/textColorHint"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/iv_action"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="@drawable/bg_action_16"
+        android:padding="@dimen/app_style_dp_8"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_attachment_delete" />
+</LinearLayout>

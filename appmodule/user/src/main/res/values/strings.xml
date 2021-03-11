@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">我的</string>
+    <string name="user_label_setting">设置</string>
+    <string name="user_label_login">登录</string>
+    <string name="user_label_account">账号</string>
+    <string name="user_label_input_account">请输入账号</string>
+    <string name="user_label_password">密码</string>
+    <string name="user_label_input_password">请输入密码</string>
+    <string name="user_label_save_password">保存密码</string>
+    <string name="user_label_auto_login">自动登录</string>
+    <string name="user_label_sign_out">退出登录</string>
+    <string name="user_label_logging_in">正在登录</string>
+    <string name="user_toast_login_login_successful">登录成功</string>
+    <string name="user_toast_login_login_failed">登录失败</string>
+    <string name="user_label_pet_name">昵称</string>
+    <string name="user_label_remark">备注</string>
+    <string name="user_label_skip">跳过</string>
+    <string name="user_label_edit_pass_word">修改密码</string>
+    <string name="user_label_old_password">原密码</string>
+    <string name="user_label_new_password">新密码</string>
+    <string name="user_label_verify_new_password">确认新密码</string>
+    <string name="user_label_verify_new_password_error">两次新密码不一致，请重新出入</string>
+    <string name="user_label_cell_phone">手机</string>
+    <string name="user_toast_base_permission">未开启基本权限,请授予该权限！</string>
+    <string name="user_toast_base_permission_go_setting">未开启基本权限,请手动到设置去开启权限</string>
+    <string name="user_toast_click_again_to_return_to_the_desktop">再次点击回到桌面</string>
+    <string name="user_toast_data_init_error">数据初始化失败，请卸载重装此APP</string>
+    <string name="user_label_mine">我的</string>
+    <string name="user_label_verifying_device">正在验证设备</string>
+    <string name="user_label_registering_device">正在注册设备</string>
+    <string name="user_label_device_registration_failed">注册设备失败</string>
+    <string name="user_label_dialog_hint_registered_device_successfully">注册设备成功，请等待管理员审核</string>
+    <string name="user_label_register_device">注册设备</string>
+    <string name="user_label_register_device_input_hint">请输入手机号</string>
+    <string name="user_label_please_enter_a_valid_phone_number">请输入正确的手机号</string>
+    <string name="user_label_equipment_already_x">设备%1$s</string>
+    <string name="user_label_equipment_already_service_info_index_out">设备状态后端未定义完整</string>
+    <string name="user_label_department">所属部门</string>
+    <string name="user_label_mobile_phone_number">手机号码</string>
+    <array name="userStatusArray">
+        <item>激活</item>
+        <item>未激活</item>
+        <item>已锁定</item>
+        <item>已擦除</item>
+        <item>已注销</item>
+        <item>已恢复出厂设置</item>
+    </array>
+</resources>

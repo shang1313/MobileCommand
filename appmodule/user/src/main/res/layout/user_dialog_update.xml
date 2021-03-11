@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/app_style_dp_8"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/app_style_dp_16"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/app_style_dp_16"
+            android:text="@string/app_name"
+            android:textColor="@color/androidTextColorPrimary"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_style_dp_8"
+            android:gravity="center"
+            android:minHeight="64dp"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/content_padding_def"
+            android:paddingRight="@dimen/content_padding_def">
+
+            <TextView
+                android:id="@+id/tv_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="6sp"
+                android:textColor="@color/androidTextColorSecondary"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_parent"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/app_style_dp_8">
+
+            <LinearLayout
+                android:id="@+id/negative_parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="@dimen/app_style_dp_16"
+                android:paddingRight="@dimen/app_style_dp_16">
+
+                <Button
+                    android:id="@+id/btn_negative"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_action_color_stroke_accent_2"
+                    android:gravity="center"
+                    android:text="@string/action_temporarily_not_update"
+                    android:textColor="@color/androidTextColorSecondary"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/positive_parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="@dimen/app_style_dp_16"
+                android:paddingRight="@dimen/app_style_dp_16">
+
+                <android.slc.widget.RectProgressView
+                    android:id="@+id/btn_positive"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:gravity="center"
+                    app:backColor="@color/colorPrimary"
+                    app:backProgressColor="#fefefe"
+                    app:backStrokeColor="@color/colorPrimary"
+                    app:completeColor="@android:color/white"
+                    app:completeStrokeColor="@color/colorPrimary"
+                    app:completeTextColor="@color/colorPrimary"
+                    app:max="100"
+                    app:progressColor="@color/colorPrimary"
+                    app:progressStrokeColor="@color/colorPrimary"
+                    app:radius="2dp"
+                    app:strokeWidth="1px"
+                    app:text="@string/action_update_now"
+                    app:textColor="#fefefe"
+                    app:textProgressColor="#cacbd7"
+                    app:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

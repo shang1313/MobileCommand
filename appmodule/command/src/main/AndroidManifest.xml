@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="android.slc.command">
+
+    <application>
+
+        <activity android:name=".ui.activity.MainActivity" />
+    </application>
+</manifest>

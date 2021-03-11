@@ -1,0 +1,134 @@
+apply from: "${project.rootDir}/config_router.gradle"
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+        flavorDimensions "versionCode"
+
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        //只生成armv7的so
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'slc'
+            keyPassword '786586'
+            storeFile file('../slc.jks')
+            storePassword '786586'
+        }
+        debug {
+            keyAlias 'slc'
+            keyPassword '786586'
+            storeFile file('../slc.jks')
+            storePassword '786586'
+        }
+    }
+    productFlavors {
+        online {
+            manifestPlaceholders = [API        : "http://101.132.144.109:8085/fire.mobile/",
+                                    API_DS     : "http://61.190.53.185:8099/",
+                                    API_DS_FILE: "http://61.190.53.185:8089",
+                                    SOCKET_HOST: "101.132.144.109",
+                                    SOCKET_PORT: "7611",
+                                    A_MAP_KEY  : "d548879d22b50bcdee9ebed03d064e5b"]
+        }
+        dev {
+            manifestPlaceholders = [API        : "http://192.168.1.104:8081/",
+                                    API_DS     : "http://61.190.53.185:8099/",
+                                    API_DS_FILE: "http://61.190.53.185:8089",
+                                    SOCKET_HOST: "101.132.144.109",
+                                    SOCKET_PORT: "7611",
+                                    A_MAP_KEY  : "d548879d22b50bcdee9ebed03d064e5b"]
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [ON_LINE: "true"]
+        }
+        debug {
+            signingConfig signingConfigs.debug
+            manifestPlaceholders = [ON_LINE: "false"]
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    api 'androidx.multidex:multidex:2.0.1'
+    api "androidx.appcompat:appcompat:$androidXAppcompat"
+    api "androidx.recyclerview:recyclerview:$androidXRecyclerview"
+    api "androidx.cardview:cardview:$androidXCardview"
+    api "com.google.android.material:material:$googleAndroidMaterial"
+    api "androidx.constraintlayout:constraintlayout:$androidXConstraintlayout"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$androidXSwiperefreshlayout"
+    //基础组件
+    api "android.slc:box:$boxsVersion"
+    //媒体选择
+    api "android.slc:mediaglide:$mpVersion"
+    api "android.slc:mediapicker:$mpVersion"
+    api("com.github.slcpublic:slc-network:$slcNetwork") {
+        exclude(group: 'android.slc')
+    }
+    api "com.github.slcpublic:slc-sticky:$slcSticky"
+    api "com.github.slcpublic:slc-flowLayout:$slcFlowLayout"
+    //对话框
+    api "com.github.slcpublic:slc-dialog:$slcDialog"
+    //附件基础类
+    api "com.github.slcpublic:slc-attachment:$slcAttachment"
+    //适配器
+    api "com.github.slcpublic:slc-adapter:$slcAdapter"
+    //控件
+    api "com.github.slcpublic:slc-widget:$slcWidget"
+    //项目依赖包
+    //选择
+    api project(path: ':public:pickerView')
+    api project(path: ':public:magicindicator')
+    //数据库
+    api project(path: ':appmodule:appdatabase')
+    //权限管理
+    api 'com.karumi:dexter:6.0.0'
+    //recyclerView分割线
+    api 'com.github.fondesa:recycler-view-divider:2.0.1'
+    //glide
+    api 'com.github.bumptech.glide:glide:4.11.0'
+    api 'jp.wasabeef:glide-transformations:3.3.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    //适配器adapter
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+    //LiveEventBus
+    api 'com.jeremyliao:live-event-bus-x:1.5.2'
+    //进度按钮
+    api 'com.dinuscxj:circleprogressbar:1.3.0'
+    //内存泄露调试
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+}

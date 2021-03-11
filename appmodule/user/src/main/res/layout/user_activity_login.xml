@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="android.slc.user.vm.LoginVm" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/app_bar_layout_light" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/developersContentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    style="@style/MZWLayout"
+                    android:layout_weight="0.3">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/ic_launcher" />
+                </FrameLayout>
+
+                <LinearLayout
+                    style="@style/LinearLayoutVerticalMZW"
+                    android:layout_weight="0.5">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/app_style_dp_16"
+                        android:layout_marginEnd="@dimen/app_style_dp_16">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/user_label_account"
+                            android:inputType="textEmailAddress"
+                            android:text="@={vm.userName}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/app_style_dp_16"
+                        android:layout_marginTop="@dimen/app_style_dp_8"
+                        android:layout_marginEnd="@dimen/app_style_dp_16">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/user_label_password"
+                            android:inputType="textPassword"
+                            android:text="@={vm.password}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        style="@style/LinearLayoutHorizontalMW"
+                        android:layout_marginStart="@dimen/app_style_dp_16"
+                        android:layout_marginTop="@dimen/app_style_dp_16"
+                        android:layout_marginEnd="@dimen/app_style_dp_16">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@={vm.isSavePassword}"
+                            android:text="@string/user_label_save_password" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@={vm.isAutoLogin}"
+                            android:text="@string/user_label_auto_login" />
+                    </LinearLayout>
+
+                    <Button
+                        style="@style/generalActionButtonStyle"
+                        android:onClick="@{()->vm.login()}"
+                        android:text="@string/user_label_login"/>
+                </LinearLayout>
+
+                <FrameLayout
+                    style="@style/MZWLayout"
+                    android:layout_weight="0.2">
+
+                </FrameLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

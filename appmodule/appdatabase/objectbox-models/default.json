@@ -1,0 +1,459 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:4065845174039998697",
+      "lastPropertyId": "19:4927931192684546076",
+      "name": "MsgBody",
+      "properties": [
+        {
+          "id": "1:2975563027650456868",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3337665066934999686",
+          "name": "msgId",
+          "indexId": "1:2210733793009531359",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "4:5323549806826438459",
+          "name": "content",
+          "type": 9
+        },
+        {
+          "id": "8:43700446003508948",
+          "name": "msgHoldAccount",
+          "type": 9
+        },
+        {
+          "id": "10:3370612698513875213",
+          "name": "hasRed",
+          "type": 1,
+          "flags": 4
+        },
+        {
+          "id": "11:1658816724949704327",
+          "name": "isDelete",
+          "type": 1,
+          "flags": 4
+        },
+        {
+          "id": "12:1353687507737919984",
+          "name": "msgAttachToOneId",
+          "indexId": "11:6559960414716529356",
+          "type": 11,
+          "flags": 1548,
+          "relationTarget": "MsgAttach"
+        },
+        {
+          "id": "13:5008784526876667150",
+          "name": "state",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "14:9131803819081140310",
+          "name": "service_id",
+          "indexId": "13:4555958429111447199",
+          "type": 6,
+          "flags": 12
+        },
+        {
+          "id": "15:8369039298280084930",
+          "name": "action",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "16:447116793769607607",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "17:3819850209950317292",
+          "name": "timestamp",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "18:233777742642484794",
+          "name": "sender",
+          "type": 9
+        },
+        {
+          "id": "19:4927931192684546076",
+          "name": "receiver",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2604964576145387968",
+      "lastPropertyId": "10:1110238230643121716",
+      "name": "NewMsg",
+      "properties": [
+        {
+          "id": "1:8967727286211908065",
+          "name": "_id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4619637612677746985",
+          "name": "msgId",
+          "indexId": "2:287656383981596065",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:5364780597856057989",
+          "name": "fromId",
+          "indexId": "3:9190734136208137973",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "4:804147899307910583",
+          "name": "toId",
+          "indexId": "4:8455243267311463532",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "5:6779649396772813181",
+          "name": "msgHoldAccount",
+          "indexId": "5:1689935683706579309",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "6:6088751813926325048",
+          "name": "createTime",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "7:2571184704408685064",
+          "name": "count",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "8:1268004395017634778",
+          "name": "msgBodyId",
+          "indexId": "6:8043054819911401766",
+          "type": 11,
+          "flags": 1548,
+          "relationTarget": "MsgBody"
+        },
+        {
+          "id": "9:7087129526921268827",
+          "name": "userId",
+          "indexId": "7:7850772265341975046",
+          "type": 11,
+          "flags": 1548,
+          "relationTarget": "User"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:4402924954821856833",
+      "lastPropertyId": "38:4771739104411878138",
+      "name": "User",
+      "properties": [
+        {
+          "id": "2:239353291733805162",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "11:5547317061231539698",
+          "name": "status",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "12:8897384027619630531",
+          "name": "_userType",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "14:7586415417540717200",
+          "name": "createTime",
+          "type": 9
+        },
+        {
+          "id": "15:6079668185065606930",
+          "name": "createBy",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "16:2478435662171552811",
+          "name": "modifyTime",
+          "type": 9
+        },
+        {
+          "id": "17:7667521716456574668",
+          "name": "modifyBy",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "18:4172646840787303902",
+          "name": "deviceId",
+          "type": 9
+        },
+        {
+          "id": "19:3261719747533449425",
+          "name": "deviceBrand",
+          "type": 9
+        },
+        {
+          "id": "20:2288985545717680364",
+          "name": "deviceModel",
+          "type": 9
+        },
+        {
+          "id": "21:1199595430134408213",
+          "name": "phoneNo",
+          "type": 9
+        },
+        {
+          "id": "22:1256561354309987456",
+          "name": "userName",
+          "type": 9
+        },
+        {
+          "id": "23:6263057084109329703",
+          "name": "idDept",
+          "type": 6,
+          "flags": 4
+        },
+        {
+          "id": "24:7629282371089194838",
+          "name": "iMei",
+          "type": 9
+        },
+        {
+          "id": "25:4384842105577730972",
+          "name": "batteryStatus",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "26:2656152724284917990",
+          "name": "diskSize",
+          "type": 9
+        },
+        {
+          "id": "27:5693767346814591103",
+          "name": "memorySize",
+          "type": 9
+        },
+        {
+          "id": "28:5803178873575874446",
+          "name": "cpu",
+          "type": 9
+        },
+        {
+          "id": "29:704275468591751868",
+          "name": "bluetoothMac",
+          "type": 9
+        },
+        {
+          "id": "30:1879313613655262944",
+          "name": "wifiMac",
+          "type": 9
+        },
+        {
+          "id": "31:2993699789665609195",
+          "name": "cameraStatus",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "32:886405775495065358",
+          "name": "workLong",
+          "type": 9
+        },
+        {
+          "id": "33:2575037758296039931",
+          "name": "iMsi",
+          "type": 9
+        },
+        {
+          "id": "34:7249340886862964611",
+          "name": "systemEm",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "35:8423274386899628694",
+          "name": "sourceEm",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "36:4727238864365088439",
+          "name": "avatar",
+          "type": 9
+        },
+        {
+          "id": "37:3390350949654119714",
+          "name": "deptSimpleName",
+          "type": 9
+        },
+        {
+          "id": "38:4771739104411878138",
+          "name": "deptName",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5003069463453069844",
+      "lastPropertyId": "6:7265112443590892781",
+      "name": "MsgAttach",
+      "properties": [
+        {
+          "id": "1:9180550058501873344",
+          "name": "_id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:7058537837689851418",
+          "name": "progress",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "4:8542452017577274354",
+          "name": "localPath",
+          "indexId": "9:5097997180013573357",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "5:8276710573829271283",
+          "name": "networkPath",
+          "indexId": "10:5394137791471024073",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "6:7265112443590892781",
+          "name": "errorMsg",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:5430219043057340717",
+      "lastPropertyId": "3:8106365262127568366",
+      "name": "TableVersion",
+      "properties": [
+        {
+          "id": "1:58486432040152534",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7249166896771932271",
+          "name": "tableName",
+          "indexId": "12:2970645164894186569",
+          "type": 9,
+          "flags": 2048
+        },
+        {
+          "id": "3:8106365262127568366",
+          "name": "version",
+          "type": 5,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:2561040802366754937",
+      "lastPropertyId": "5:8700502573417915588",
+      "name": "State",
+      "properties": [
+        {
+          "id": "1:6733378765756556209",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2256314764376399636",
+          "name": "hostName",
+          "type": 9
+        },
+        {
+          "id": "3:4564904698080566593",
+          "name": "hostId",
+          "type": 9
+        },
+        {
+          "id": "4:3291642129822057647",
+          "name": "state",
+          "type": 5,
+          "flags": 4
+        },
+        {
+          "id": "5:8700502573417915588",
+          "name": "saveDate",
+          "type": 6,
+          "flags": 4
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "6:2561040802366754937",
+  "lastIndexId": "13:4555958429111447199",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [
+    9172912155428552709
+  ],
+  "retiredPropertyUids": [
+    1110238230643121716,
+    2508355562587145854,
+    7675354697845162863,
+    5039985357502305911,
+    3438145791019821058,
+    8152474731471033419,
+    6277807885855699316,
+    2992528236942007556,
+    633603650579389952,
+    4671518770902054086,
+    4750311925566913076,
+    2826277689005417288,
+    5945817818416115416,
+    7675408699321737528,
+    5288434333370638595,
+    7943815807476530459,
+    6947555384021708705
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

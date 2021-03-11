@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply from: "${project.rootDir}/config_base.gradle"
+
+android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            res.srcDirs = ['src/main/res', 'src/main/res-must']
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //聊天
+    api files('libs/cim-android-sdk-3.8.0.jar')
+    implementation 'com.google.protobuf:protobuf-lite:3.0.1'
+    //高德定位
+    api files('libs/AMap3DMap_7.2.1_AMapSearch_7.1.0_AMapLocation_4.8.0_20200115.aar')
+    api 'com.effective.android:anchors:1.1.3'
+}
