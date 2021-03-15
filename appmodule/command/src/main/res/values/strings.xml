@@ -7,7 +7,7 @@
     <string name="comm_label_common_functions">常用功能</string>
     <string name="comm_label_my">我的</string>
     <array name="comm_disaster_express_array">
-        <item>灾情速递</item>
+        <item>视频调度</item>
         <item>我的图像</item>
     </array>
 </resources>

@@ -1,6 +1,7 @@
 package android.slc.command.ui.fragment;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.slc.appbase.ui.fragment.base.AppMvvmBaseFragment;
@@ -11,8 +12,11 @@ import android.slc.command.ui.fragment.de.MyImageFragment;
 import android.slc.command.vm.DisasterExpressVm;
 import android.slc.commonlibrary.util.compat.SlcBarCompatUtils;
 import android.slc.widget.SlcClickProxy;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -156,6 +160,19 @@ public class DisasterExpressFragment extends AppMvvmBaseFragment<CommandFragment
         public void destroyItem(ViewGroup container, int position, Object object) {
             Fragment fragment = fragmentList.get(position);
             fm.beginTransaction().hide(fragment).commit();
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        switch (newConfig.orientation) {
+            case Configuration.ORIENTATION_LANDSCAPE:
+                dataBinding.magicIndicator.setVisibility(View.GONE);
+                break;
+            case Configuration.ORIENTATION_PORTRAIT:
+                dataBinding.magicIndicator.setVisibility(View.VISIBLE);
+                break;
         }
     }
 }

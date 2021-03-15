@@ -4,8 +4,8 @@ buildscript {
                 compileSdkVersion: 30,
                 minSdkVersion    : 19,
                 targetSdkVersion : 28,
-                versionCode      : 8,
-                versionName      : "1.7"
+                versionCode      : 10,
+                versionName      : "1.8"
         ]
         dependencies = [
                 kotlinVersion = "1.4.20",
