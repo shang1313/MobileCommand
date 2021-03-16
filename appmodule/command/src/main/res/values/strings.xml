@@ -6,6 +6,8 @@
     <string name="comm_label_video_meeting">视频会议</string>
     <string name="comm_label_common_functions">常用功能</string>
     <string name="comm_label_my">我的</string>
+    <string name="tab_video_scheduling">视频调度</string>
+    <string name="tab_my_image">我的图像</string>
     <array name="comm_disaster_express_array">
         <item>视频调度</item>
         <item>我的图像</item>

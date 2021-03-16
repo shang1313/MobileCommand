@@ -1,6 +1,5 @@
 package android.slc.command.ui.fragment;
 
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,38 +10,23 @@ import android.slc.command.ui.fragment.de.DisasterExpressChildFragment;
 import android.slc.command.ui.fragment.de.MyImageFragment;
 import android.slc.command.vm.DisasterExpressVm;
 import android.slc.commonlibrary.util.compat.SlcBarCompatUtils;
-import android.slc.widget.SlcClickProxy;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.blankj.utilcode.util.ColorUtils;
-import com.blankj.utilcode.util.SizeUtils;
-import com.blankj.utilcode.util.StringUtils;
-
-import net.lucode.hackware.magicindicator.ViewPagerHelper;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.tabs.TabLayout;
 
 public class DisasterExpressFragment extends AppMvvmBaseFragment<CommandFragmentDisasterExpressBinding, DisasterExpressVm> {
-    private List<Fragment> fragmentList = new ArrayList<>();
+
+    private DisasterExpressChildFragment disasterExpressChildFragment;
+    private MyImageFragment myImageFragment;
+
     @Override
     protected boolean barIsLight() {
         return true;
     }
+
     @Override
     protected void bindingVariable() {
         dataBinding.setVm(viewModel);
@@ -56,111 +40,55 @@ public class DisasterExpressFragment extends AppMvvmBaseFragment<CommandFragment
     @Override
     protected void onBindView(@Nullable Bundle savedInstanceState) {
         super.onBindView(savedInstanceState);
-        initTable();
-        bindTablePager();
         initFragment();
-        bindPager();
+        initTable();
     }
 
     /**
      * 初始化索引和table
      */
     protected void initTable() {
-        CommonNavigator commonNavigator = new CommonNavigator(getActivityContext());
-        commonNavigator.setAdjustMode(true);
-        commonNavigator.setSmoothScroll(true);
-        String[] titleArray = StringUtils.getStringArray(R.array.comm_disaster_express_array);
-        commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+        dataBinding.tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public int getCount() {
-                return titleArray.length;
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0) {
+                    getChildFragmentManager().beginTransaction().hide(myImageFragment).show(disasterExpressChildFragment).commit();
+                } else {
+                    getChildFragmentManager().beginTransaction().hide(disasterExpressChildFragment).show(myImageFragment).commit();
+                    myImageFragment.reLoad();
+                }
             }
 
             @Override
-            public IPagerTitleView getTitleView(Context context, int index) {
-                SimplePagerTitleView homeQueryPagerTitleView = new SimplePagerTitleView(context);
-                homeQueryPagerTitleView.setSelectedColor(ColorUtils.getColor(R.color.colorAccent));
-                homeQueryPagerTitleView.setNormalColor(ColorUtils.getColor(R.color.androidTextColorSecondary));
-                homeQueryPagerTitleView.setTextSize(16);
-                homeQueryPagerTitleView.setTag(index);
-                homeQueryPagerTitleView.setText(titleArray[index]);
-                homeQueryPagerTitleView.setBackgroundResource(R.drawable.bg_action_color_transparent);
-                homeQueryPagerTitleView.setOnClickListener(new SlcClickProxy(v -> {
-                    dataBinding.viewPager.setCurrentItem(index);
-                }));
-                return homeQueryPagerTitleView;
+            public void onTabUnselected(TabLayout.Tab tab) {
             }
 
             @Override
-            public IPagerIndicator getIndicator(Context context) {
-                LinePagerIndicator indicator = new LinePagerIndicator(context);
-                indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
-                indicator.setColors(ColorUtils.getColor(R.color.colorAccent));
-                indicator.setLineHeight(SizeUtils.dp2px(2));
-                return indicator;
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
-        dataBinding.magicIndicator.setNavigator(commonNavigator);
-    }
-
-    /**
-     * 绑定索引和viewpager
-     */
-    protected void bindTablePager() {
-        ViewPagerHelper.bind(dataBinding.magicIndicator, dataBinding.viewPager);
     }
 
     /**
      * 初始化fragment
      */
     protected void initFragment() {
-        fragmentList.add(new DisasterExpressChildFragment());
-        fragmentList.add(new MyImageFragment());
+        disasterExpressChildFragment = new DisasterExpressChildFragment();
+        myImageFragment = new MyImageFragment();
+        getChildFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, disasterExpressChildFragment)
+                .add(R.id.fragment_container, myImageFragment)
+                .hide(myImageFragment)
+                .show(disasterExpressChildFragment)
+                .commit();
     }
 
-    /**
-     * 绑定pager
-     */
-    protected void bindPager() {
-        dataBinding.viewPager.setAdapter(new MyPagerAdapter(getChildFragmentManager()));
-    }
 
     @Override
     public void onSupportVisible() {
         super.onSupportVisible();
-        SlcBarCompatUtils.setStatusBarColor(getActivity(), Color.WHITE);
-    }
-
-    private class MyPagerAdapter extends FragmentPagerAdapter {
-        private FragmentManager fm;
-
-        public MyPagerAdapter(FragmentManager fm) {
-            super(fm);
-            this.fm = fm;
-        }
-
-        @Override
-        public int getCount() {
-            return fragmentList.size();
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return fragmentList.get(position);
-        }
-
-        @Override
-        public Fragment instantiateItem(ViewGroup container, int position) {
-            Fragment fragment = (Fragment) super.instantiateItem(container, position);
-            fm.beginTransaction().show(fragment).commit();
-            return fragment;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            Fragment fragment = fragmentList.get(position);
-            fm.beginTransaction().hide(fragment).commit();
-        }
+        SlcBarCompatUtils.setStatusBarColor(getActivityContext(), Color.WHITE);
     }
 
     @Override
@@ -168,10 +96,10 @@ public class DisasterExpressFragment extends AppMvvmBaseFragment<CommandFragment
         super.onConfigurationChanged(newConfig);
         switch (newConfig.orientation) {
             case Configuration.ORIENTATION_LANDSCAPE:
-                dataBinding.magicIndicator.setVisibility(View.GONE);
+                dataBinding.tab.setVisibility(View.GONE);
                 break;
             case Configuration.ORIENTATION_PORTRAIT:
-                dataBinding.magicIndicator.setVisibility(View.VISIBLE);
+                dataBinding.tab.setVisibility(View.VISIBLE);
                 break;
         }
     }
