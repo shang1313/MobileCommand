@@ -2,6 +2,11 @@ package android.slc.command.ui.activity;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.slc.appbase.data.api.EncryptionAndDecryptionTools;
+import android.slc.appbase.data.api.main.callback.SlcObserver;
+import android.slc.appbase.data.entity.AppVersions;
+import android.slc.appbase.data.entity.CheckUpdateResp;
+import android.slc.appbase.data.repository.remote.VersionService;
 import android.slc.appbase.ui.activity.base.AppMvvmBaseActivity;
 import android.slc.code.ui.fragment.BaseFragment;
 import android.slc.command.R;
@@ -11,7 +16,11 @@ import android.slc.command.ui.fragment.CommonFunctionsFragment;
 import android.slc.command.ui.fragment.DisasterExpressFragment;
 import android.slc.command.ui.fragment.ImageResourceFragment;
 import android.slc.command.vm.MainVm;
+import android.slc.extras.user.config.ConstantsUser;
 import android.slc.extras.user.repository.local.MyInfoFragmentService;
+import android.slc.or.SlcNu;
+import android.slc.or.SlcParam;
+import android.slc.rx.SlcRxJavaUtils;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -22,6 +31,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.ClickUtils;
+import com.blankj.utilcode.util.LogUtils;
+
+import java.util.Map;
 
 @Route(path = ConstantsCommand.Path.PATH_MAIN)
 public class MainActivity extends AppMvvmBaseActivity<CommandActivityMainBinding, MainVm> {
@@ -64,6 +76,39 @@ public class MainActivity extends AppMvvmBaseActivity<CommandActivityMainBinding
                 currentFragment = myInfoFragment;
             }
         });
+
+
+        Map<String, Object> data = SlcParam.newBuilder().put("packageName", getPackageName()).put("versionName", AppUtils.getAppVersionName()).build();
+
+        SlcNu.getInstance().create(VersionService.class)
+                .checkUpdate(EncryptionAndDecryptionTools.makeDataWithToken(data))
+                .compose(SlcRxJavaUtils.applyOtAndroidSchedulers())
+                .subscribe(new SlcObserver<CheckUpdateResp>() {
+
+                    @Override
+                    protected void onSucceed(CheckUpdateResp data) {
+                        LogUtils.d(data);
+                        if (AppUtils.getAppVersionCode() >= data.getAppVersion()) {
+                            AppVersions appVersions = new AppVersions();
+                            appVersions.setVersion(data.getAppVersion());
+                            appVersions.setVersionName(data.getAppVersionName());
+                            appVersions.setForceUpdate(data.getIsForcedUpdate() == 1);
+                            appVersions.setUpdateContent(data.getVersionDesc());
+                            appVersions.setId(data.getId());
+                            appVersions.setFileId(data.getAppRealName());
+                            appVersions.setDownloadUrl(data.getUpdateUrl());
+
+                            ARouter.getInstance().build(ConstantsUser.Path.PATH_UP_DATA_ACTIVITY)
+                                    .withSerializable(ConstantsUser.Key.KEY_UP_DATE, appVersions)
+                                    .navigation();
+                        }
+                    }
+
+                    @Override
+                    protected void onFailed(int errorCode, String errorMessage) {
+                        LogUtils.e(errorMessage);
+                    }
+                });
     }
 
     @Override

@@ -9,6 +9,7 @@ public class AppVersions implements Serializable {
     private String updateContent;
     private boolean forceUpdate;
     private String fileId;
+    private String downloadUrl;
 
     public String getId() {
         return id;
@@ -56,5 +57,13 @@ public class AppVersions implements Serializable {
 
     public void setFileId(String fileId) {
         this.fileId = fileId;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
     }
 }

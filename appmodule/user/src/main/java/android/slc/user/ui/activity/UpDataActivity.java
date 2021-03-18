@@ -109,7 +109,7 @@ public class UpDataActivity extends Activity implements View.OnClickListener {
     }
 
     private void checkUpDate() {
-        SimpleDownloadByOk.newBuilder(ApiConfig.BASE_URL + "file/download?id=" + upDate.getFileId(), PathUtils.getExternalAppDownloadPath(), "app-release.apk")
+        SimpleDownloadByOk.newBuilder(upDate.getDownloadUrl(), PathUtils.getExternalAppDownloadPath(), "app-release.apk")
                 .toCommonlyConfig()
                 .build()
                 .getDownloadTask().enqueue(new SimpleDownloadByOkListener() {
@@ -135,6 +135,7 @@ public class UpDataActivity extends Activity implements View.OnClickListener {
 
             @Override
             protected void error(@NonNull com.liulishuo.okdownload.DownloadTask task, @NonNull Exception e) {
+                e.printStackTrace();
                 state = Progress.NONE;
                 btn_positive.setProgress(-1);
                 btn_positive.setText(getString(R.string.action_download_on_error_click_retry));
